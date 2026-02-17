@@ -210,14 +210,12 @@ a {
   font-size: clamp(16px, 2.1vw, 21px);
 }
 
-.about-grid,
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
-.about-grid .card,
 .projects-grid .card,
 .materials-grid .card {
   overflow: hidden;
@@ -226,12 +224,8 @@ a {
   background: #0f0f0f;
 }
 
-.about-grid .card {
-  aspect-ratio: 4 / 3;
-}
-
 .projects-grid .card {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
 }
 
 .card img {
@@ -268,7 +262,7 @@ a {
 
 .materials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -373,6 +367,23 @@ a {
   transform: none;
 }
 
+/* Этот текст оставляем более узким, чтобы длинный блок оставался читаемым. */
+.projects-text {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .materials-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 920px) {
   .main-nav > a:not(.cta-link) {
     display: none;
@@ -384,13 +395,32 @@ a {
 }
 
 @media (max-width: 680px) {
-  .about-grid,
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .projects-grid .card {
+    aspect-ratio: 1 / 1;
+  }
+
+  #projects.section {
+    padding: 64px 0;
+  }
+
+  .materials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .footer-wrap {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  /* Дополнительно уменьшаем визуальную высоту карточек на очень узких экранах. */
+  .projects-grid .card {
+    aspect-ratio: 6 / 5;
   }
 }
