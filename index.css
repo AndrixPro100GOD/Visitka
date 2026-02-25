@@ -27,19 +27,26 @@ body {
   position: relative;
 }
 
-/* Текстура фона: добавляем мягко, чтобы не ухудшить читаемость. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("./images/Background.png") center / cover no-repeat;
-  opacity: 0.34;
-  mix-blend-mode: normal;
-  pointer-events: none;
-  z-index: 0;
+/* Единый фон для всех секций + плавный fade по краям, чтобы скрывать неровности текстуры. */
+.hero,
+.section,
+.site-footer {
+  --surface-tint: rgba(18, 22, 30, 0.72);
+  --surface-tint-strong: rgba(10, 12, 16, 0.9);
+  background:
+    linear-gradient(
+      to bottom,
+      var(--surface-tint-strong) 0%,
+      var(--surface-tint) 18%,
+      var(--surface-tint) 82%,
+      var(--surface-tint-strong) 100%
+    ),
+    url("./images/Background.png?v=20260218-2") center / cover no-repeat fixed;
 }
 
-body > * {
+.hero > *,
+.section > *,
+.site-footer > * {
   position: relative;
   z-index: 1;
 }
@@ -130,26 +137,28 @@ a {
 }
 
 .section-dark {
-  background: linear-gradient(150deg, rgba(11, 11, 11, 0.82) 0%, rgba(17, 24, 39, 0.82) 100%);
+  --surface-tint: rgba(17, 24, 39, 0.7);
+  --surface-tint-strong: rgba(10, 11, 13, 0.9);
 }
 
 .section-concrete {
-  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.22), transparent 40%),
-    linear-gradient(170deg, rgba(16, 16, 16, 0.84) 0%, rgba(23, 23, 23, 0.84) 100%);
+  --surface-tint: rgba(33, 27, 19, 0.74);
+  --surface-tint-strong: rgba(16, 12, 9, 0.9);
 }
 
 .section-laminate {
-  /* Фон секции материалов: локальная текстура + затемнение для читаемости текста. */
-  background:
-    linear-gradient(150deg, rgba(12, 12, 12, 0.74) 0%, rgba(28, 28, 28, 0.82) 100%),
-    url("./images/Background.png") center / cover no-repeat;
+  --surface-tint: rgba(20, 26, 23, 0.72);
+  --surface-tint-strong: rgba(10, 14, 12, 0.9);
 }
 
 .section-blueprint {
-  background: linear-gradient(160deg, rgba(13, 17, 23, 0.84) 0%, rgba(18, 24, 39, 0.84) 100%);
+  --surface-tint: rgba(18, 25, 44, 0.74);
+  --surface-tint-strong: rgba(9, 12, 21, 0.9);
 }
 
 .hero {
+  --surface-tint: rgba(16, 23, 38, 0.72);
+  --surface-tint-strong: rgba(8, 10, 14, 0.92);
   min-height: calc(100vh - 76px);
   display: flex;
   align-items: center;
@@ -471,9 +480,10 @@ a {
 }
 
 .site-footer {
+  --surface-tint: rgba(14, 16, 21, 0.76);
+  --surface-tint-strong: rgba(8, 9, 12, 0.92);
   border-top: 1px solid var(--border);
   padding: 28px 0 36px;
-  background: rgba(9, 9, 9, 0.82);
 }
 
 .footer-wrap {
@@ -564,6 +574,12 @@ a {
 }
 
 @media (max-width: 920px) {
+  .hero,
+  .section,
+  .site-footer {
+    background-attachment: scroll;
+  }
+
   .main-nav > a:not(.cta-link) {
     display: none;
   }
@@ -601,10 +617,6 @@ a {
   /* Дополнительно уменьшаем визуальную высоту карточек на очень узких экранах. */
   .projects-grid .card {
     aspect-ratio: 6 / 5;
-  }
-
-  body::before {
-    opacity: 0.26;
   }
 
   .hero::after {
