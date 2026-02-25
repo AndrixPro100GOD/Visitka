@@ -33,7 +33,7 @@ body {
   --line-image: none;
   position: fixed;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
   width: min(44vw, 620px);
   aspect-ratio: 1 / 1;
   mix-blend-mode: screen;
@@ -52,30 +52,40 @@ body {
 }
 
 .ambient-lines::before {
-  opacity: 0.26;
+  opacity: 0.34;
 }
 
 .ambient-lines::after {
-  opacity: 0.48;
+  opacity: 0.62;
   filter: brightness(1.38) contrast(1.16);
   transform-origin: center;
   animation: lineSoftScale 3.8s ease-in-out infinite;
 }
 
 .ambient-lines--top-right {
-  --line-image: url("./images/lines-top-right.png?v=20260218-9");
+  --line-image: url("./images/lines-top-right.png?v=20260218-11");
   top: var(--header-height);
-  right: 0;
-  --line-x: 16%;
+  right: -1px;
+  --line-x: 0%;
   --line-y: 0%;
 }
 
+.ambient-lines--top-right::before,
+.ambient-lines--top-right::after {
+  background-position: top right;
+}
+
 .ambient-lines--bottom-left {
-  --line-image: url("./images/lines-bottom-left.png?v=20260218-9");
+  --line-image: url("./images/lines-bottom-left.png?v=20260218-11");
   bottom: 0;
   left: 0;
-  --line-x: -16%;
-  --line-y: 22%;
+  --line-x: -8%;
+  --line-y: 18%;
+}
+
+.ambient-lines--bottom-left::before,
+.ambient-lines--bottom-left::after {
+  background-position: bottom left;
 }
 
 .ambient-lines--top-right::after {
@@ -92,6 +102,7 @@ body {
 .site-footer {
   --surface-tint: rgba(18, 22, 30, 0.52);
   --surface-tint-strong: rgba(10, 12, 16, 0.72);
+  position: relative;
   background:
     linear-gradient(
       to bottom,
@@ -101,14 +112,14 @@ body {
       var(--surface-tint-strong) 100%
     ),
     /* Используем обычный фон, чтобы пользователи не загружали Background-high-res.png. */
-    url("./images/Background.png?v=20260218-9") center / cover no-repeat fixed;
+    url("./images/Background.png?v=20260218-11") center / cover no-repeat fixed;
 }
 
 .hero > *,
 .section > *,
 .site-footer > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 img {
