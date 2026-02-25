@@ -7,6 +7,7 @@
   --accent: #f59e0b;
   --accent-strong: #d97706;
   --border: rgba(255, 255, 255, 0.12);
+  --header-height: 76px;
 }
 
 * {
@@ -27,6 +28,64 @@ body {
   position: relative;
 }
 
+/* Декоративные чертежные линии по углам экрана (прозрачные PNG). */
+.ambient-lines {
+  --line-image: none;
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: min(44vw, 620px);
+  aspect-ratio: 1 / 1;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.08));
+  transform: translate(var(--line-x, 0), var(--line-y, 0));
+}
+
+.ambient-lines::before,
+.ambient-lines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--line-image);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ambient-lines::before {
+  opacity: 0.26;
+}
+
+.ambient-lines::after {
+  opacity: 0.48;
+  filter: brightness(1.38) contrast(1.16);
+  transform-origin: center;
+  animation: lineSoftScale 3.8s ease-in-out infinite;
+}
+
+.ambient-lines--top-right {
+  --line-image: url("./images/lines-top-right.png?v=20260218-9");
+  top: var(--header-height);
+  right: 0;
+  --line-x: 16%;
+  --line-y: 0%;
+}
+
+.ambient-lines--bottom-left {
+  --line-image: url("./images/lines-bottom-left.png?v=20260218-9");
+  bottom: 0;
+  left: 0;
+  --line-x: -16%;
+  --line-y: 22%;
+}
+
+.ambient-lines--top-right::after {
+  animation-delay: 0.4s;
+}
+
+.ambient-lines--bottom-left::after {
+  animation-delay: 1.2s;
+}
+
 /* Единый фон для всех секций + плавный fade по краям, чтобы скрывать неровности текстуры. */
 .hero,
 .section,
@@ -41,7 +100,8 @@ body {
       var(--surface-tint) 82%,
       var(--surface-tint-strong) 100%
     ),
-    url("./images/Background.png?v=20260218-6") center / cover no-repeat fixed;
+    /* Используем обычный фон, чтобы пользователи не загружали Background-high-res.png. */
+    url("./images/Background.png?v=20260218-9") center / cover no-repeat fixed;
 }
 
 .hero > *,
@@ -584,6 +644,18 @@ a {
   }
 }
 
+@keyframes lineSoftScale {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.78;
+    transform: scale(1.08);
+  }
+}
+
 @keyframes stripeFade {
   0%,
   100% {
@@ -627,6 +699,18 @@ a {
 }
 
 @media (max-width: 920px) {
+  .ambient-lines {
+    width: min(56vw, 460px);
+  }
+
+  .ambient-lines::before {
+    opacity: 0.2;
+  }
+
+  .ambient-lines::after {
+    opacity: 0.4;
+  }
+
   .hero::after {
     animation-duration: 9s, 3.6s;
   }
@@ -690,6 +774,18 @@ a {
 
   .hero::after {
     animation-duration: 7.4s, 2.8s;
+  }
+
+  .ambient-lines {
+    width: min(66vw, 360px);
+  }
+
+  .ambient-lines::before {
+    opacity: 0.16;
+  }
+
+  .ambient-lines::after {
+    opacity: 0.3;
   }
 }
 
