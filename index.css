@@ -100,8 +100,8 @@ body {
 .hero,
 .section,
 .site-footer {
-  --surface-tint: rgba(18, 22, 30, 0.52);
-  --surface-tint-strong: rgba(10, 12, 16, 0.72);
+  --surface-tint: rgba(18, 22, 30, 0.6);
+  --surface-tint-strong: rgba(10, 12, 16, 0.8);
   position: relative;
   background:
     linear-gradient(
@@ -112,7 +112,7 @@ body {
       var(--surface-tint-strong) 100%
     ),
     /* Используем обычный фон, чтобы пользователи не загружали Background-high-res.png. */
-    url("./images/Background.png?v=20260218-11") center / cover no-repeat fixed;
+    url("./images/Background.png?v=20260218-12") center / cover no-repeat fixed;
 }
 
 .hero > *,
@@ -208,28 +208,28 @@ a {
 }
 
 .section-dark {
-  --surface-tint: rgba(17, 24, 39, 0.5);
-  --surface-tint-strong: rgba(10, 11, 13, 0.72);
+  --surface-tint: rgba(17, 24, 39, 0.58);
+  --surface-tint-strong: rgba(10, 11, 13, 0.8);
 }
 
 .section-concrete {
-  --surface-tint: rgba(33, 27, 19, 0.56);
-  --surface-tint-strong: rgba(16, 12, 9, 0.74);
+  --surface-tint: rgba(33, 27, 19, 0.64);
+  --surface-tint-strong: rgba(16, 12, 9, 0.82);
 }
 
 .section-laminate {
-  --surface-tint: rgba(20, 26, 23, 0.54);
-  --surface-tint-strong: rgba(10, 14, 12, 0.72);
+  --surface-tint: rgba(20, 26, 23, 0.62);
+  --surface-tint-strong: rgba(10, 14, 12, 0.8);
 }
 
 .section-blueprint {
-  --surface-tint: rgba(18, 25, 44, 0.56);
-  --surface-tint-strong: rgba(9, 12, 21, 0.74);
+  --surface-tint: rgba(18, 25, 44, 0.64);
+  --surface-tint-strong: rgba(9, 12, 21, 0.82);
 }
 
 .hero {
-  --surface-tint: rgba(16, 23, 38, 0.46);
-  --surface-tint-strong: rgba(8, 10, 14, 0.66);
+  --surface-tint: rgba(16, 23, 38, 0.54);
+  --surface-tint-strong: rgba(8, 10, 14, 0.74);
   min-height: calc(100vh - 76px);
   display: flex;
   align-items: center;
@@ -594,8 +594,8 @@ a {
 }
 
 .site-footer {
-  --surface-tint: rgba(14, 16, 21, 0.62);
-  --surface-tint-strong: rgba(8, 9, 12, 0.78);
+  --surface-tint: rgba(14, 16, 21, 0.68);
+  --surface-tint-strong: rgba(8, 9, 12, 0.84);
   border-top: 1px solid var(--border);
   padding: 28px 0 36px;
 }
