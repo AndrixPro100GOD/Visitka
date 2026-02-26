@@ -426,6 +426,9 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  /* Ограничиваем ширину сетки, чтобы карточки не были слишком крупными на широких экранах. */
+  max-width: 840px;
+  margin: 0 auto;
 }
 
 .projects-grid .card {
