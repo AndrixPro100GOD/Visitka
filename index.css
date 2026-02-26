@@ -63,7 +63,7 @@ body {
 }
 
 .ambient-lines--top-right {
-  --line-image: url("./images/lines-top-right.png?v=20260218-11");
+  --line-image: url("./images/lines-top-right.png?v=20260218-17");
   top: var(--header-height);
   right: -1px;
   --line-x: 0%;
@@ -76,7 +76,7 @@ body {
 }
 
 .ambient-lines--bottom-left {
-  --line-image: url("./images/lines-bottom-left.png?v=20260218-11");
+  --line-image: url("./images/lines-bottom-left.png?v=20260218-17");
   bottom: 0;
   left: 0;
   --line-x: -8%;
@@ -112,7 +112,7 @@ body {
       var(--surface-tint-strong) 100%
     ),
     /* Используем обычный фон, чтобы пользователи не загружали Background-high-res.png. */
-    url("./images/Background.png?v=20260218-12") center / cover no-repeat fixed;
+    url("./images/Background.png?v=20260218-17") center / cover no-repeat fixed;
 }
 
 .hero > *,
@@ -277,8 +277,11 @@ a {
 
 .hero-logo-wrap {
   position: relative;
-  width: fit-content;
-  margin: 0 auto 28px;
+  width: 100%;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Мягкое круглое свечение за логотипом, чтобы фокусировать первый экран. */
@@ -311,6 +314,39 @@ a {
   z-index: 1;
 }
 
+.hero-logo-title {
+  margin: -40px 0 0 0;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: clamp(58px, 8.3vw, 126px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  line-height: 0.92;
+  max-width: 100%;
+  color: #f9dd92;
+  background: linear-gradient(
+    110deg,
+    #fff8d8 0%,
+    #fae6ac 18%,
+    #f4c65a 38%,
+    #a76508 52%,
+    #f4c65a 66%,
+    #fff0bf 82%,
+    #b97310 100%
+  );
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldMetalShine 5.2s linear infinite;
+  text-shadow:
+    0 1px 0 rgba(255, 244, 206, 0.55),
+    0 4px 0 rgba(110, 68, 8, 0.58),
+    0 12px 24px rgba(0, 0, 0, 0.44),
+    0 0 28px rgba(246, 188, 74, 0.5);
+}
+
 .hero h1 {
   margin: 0;
   font-size: clamp(34px, 8vw, 76px);
@@ -322,7 +358,7 @@ a {
   color: var(--accent);
 }
 
-.hero p {
+.hero-description {
   margin: 22px auto 0;
   max-width: 760px;
   color: var(--muted);
@@ -383,8 +419,7 @@ a {
   gap: 16px;
 }
 
-.projects-grid .card,
-.materials-grid .card {
+.projects-grid .card {
   overflow: hidden;
   border-radius: 20px;
   border: 1px solid var(--border);
@@ -392,8 +427,7 @@ a {
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.projects-grid .card:hover,
-.materials-grid .card:hover {
+.projects-grid .card:hover {
   transform: translateY(-4px);
   border-color: rgba(245, 158, 11, 0.55);
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.35);
@@ -435,27 +469,62 @@ a {
   opacity: 0.92;
 }
 
+/* Материалы показываем в ромбической сетке, как в референсе. */
 .materials-grid {
+  --diamond-size: clamp(82px, 8.1vw, 128px);
+  --row-shift-x: calc(var(--diamond-size) * 0.54);
+  --row-shift-y: calc(var(--diamond-size) * -0.31);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, var(--diamond-size));
+  justify-content: center;
   gap: 14px;
+  padding: 18px calc(var(--diamond-size) * 0.58) 22px 0;
 }
 
 .materials-grid .card {
-  aspect-ratio: 1 / 1;
+  width: var(--diamond-size);
+  height: var(--diamond-size);
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  border: none;
+  background: rgba(255, 255, 255, 0.98);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.98),
+    0 0 20px rgba(255, 255, 255, 0.48),
+    0 12px 22px rgba(0, 0, 0, 0.32);
+}
+
+.materials-grid .card img {
+  position: absolute;
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  clip-path: inherit;
+  object-fit: cover;
+  transform: scale(1.06);
+  z-index: 1;
+}
+
+/* Четный ряд смещаем, чтобы ромбы закрывали пустые промежутки. */
+.materials-grid .card:nth-child(n + 7):nth-child(-n + 12) {
+  margin-left: var(--row-shift-x);
+  margin-top: var(--row-shift-y);
+}
+
+.materials-grid .card:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 1),
+    0 0 28px rgba(255, 255, 255, 0.62),
+    0 16px 30px rgba(0, 0, 0, 0.4);
+  filter: saturate(1.06);
 }
 
 .materials-grid .card > p {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 12px 10px;
-  font-size: 14px;
-  font-weight: 700;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  display: none;
 }
 
 .contacts-card {
@@ -699,13 +768,36 @@ a {
   }
 }
 
+@keyframes goldMetalShine {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 240% 50%;
+  }
+}
+
 @media (max-width: 1100px) {
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .materials-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    --diamond-size: clamp(80px, 11vw, 120px);
+    --row-shift-x: calc(var(--diamond-size) * 0.5);
+    --row-shift-y: calc(var(--diamond-size) * -0.28);
+    grid-template-columns: repeat(5, var(--diamond-size));
+    padding-right: calc(var(--diamond-size) * 0.54);
+  }
+
+  .materials-grid .card {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .materials-grid .card:nth-child(n + 6):nth-child(-n + 10) {
+    margin-left: var(--row-shift-x);
+    margin-top: var(--row-shift-y);
   }
 }
 
@@ -751,6 +843,25 @@ a {
   .contact-item {
     min-height: 0;
   }
+
+  .materials-grid {
+    --diamond-size: clamp(78px, 17vw, 112px);
+    --row-shift-x: calc(var(--diamond-size) * 0.48);
+    --row-shift-y: calc(var(--diamond-size) * -0.24);
+    grid-template-columns: repeat(4, var(--diamond-size));
+    gap: 10px;
+    padding-right: calc(var(--diamond-size) * 0.5);
+  }
+
+  .materials-grid .card {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .materials-grid .card:nth-child(n + 5):nth-child(-n + 8) {
+    margin-left: var(--row-shift-x);
+    margin-top: var(--row-shift-y);
+  }
 }
 
 @media (max-width: 680px) {
@@ -768,7 +879,23 @@ a {
   }
 
   .materials-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --diamond-size: clamp(76px, 24vw, 102px);
+    --row-shift-x: calc(var(--diamond-size) * 0.45);
+    --row-shift-y: calc(var(--diamond-size) * -0.2);
+    grid-template-columns: repeat(3, var(--diamond-size));
+    gap: 10px;
+    padding-right: calc(var(--diamond-size) * 0.46);
+  }
+
+  .materials-grid .card {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .materials-grid .card:nth-child(n + 4):nth-child(-n + 6),
+  .materials-grid .card:nth-child(n + 10):nth-child(-n + 12) {
+    margin-left: var(--row-shift-x);
+    margin-top: var(--row-shift-y);
   }
 
   .footer-wrap {
@@ -797,6 +924,31 @@ a {
 
   .ambient-lines::after {
     opacity: 0.3;
+  }
+
+  .materials-grid {
+    --diamond-size: clamp(72px, 34vw, 92px);
+    --row-shift-x: calc(var(--diamond-size) * 0.38);
+    --row-shift-y: calc(var(--diamond-size) * -0.14);
+    grid-template-columns: repeat(2, var(--diamond-size));
+    padding-right: calc(var(--diamond-size) * 0.4);
+  }
+
+  .materials-grid .card {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .materials-grid .card:nth-child(n + 3):nth-child(-n + 4),
+  .materials-grid .card:nth-child(n + 7):nth-child(-n + 8),
+  .materials-grid .card:nth-child(n + 11):nth-child(-n + 12) {
+    margin-left: var(--row-shift-x);
+    margin-top: var(--row-shift-y);
+  }
+
+  .hero-logo-title {
+    font-size: clamp(42px, 12vw, 74px);
+    letter-spacing: 0.03em;
   }
 }
 
