@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <!-- release: 20260218-23 + remont -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>КУБ-СТРОЙ — Ремонт квартир, Лемана Про</title>
+    <meta name="app-version" content="20260218-23" />
+    <meta
+      name="description"
+      content="Ремонт квартиры от Лемана Про: демо-квартира в вашем доме, ремонт под ключ, дизайн-проект в подарок. ООО КУБ-СТРОЙ."
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./images/logo Куб Строй.png" type="image/png" />
+    <link rel="stylesheet" href="./index.css?v=20260218-23" />
+    <link rel="stylesheet" href="./remont.css?v=20260407-2" />
+  </head>
+  <body class="page-remont">
+    <div class="ambient-lines ambient-lines--top-right" aria-hidden="true"></div>
+    <div class="ambient-lines ambient-lines--bottom-left" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html#home" aria-label="На главную">
+          <img
+            class="brand-logo"
+            src="./images/logo Куб Строй.png"
+            alt="Логотип КУБ-СТРОЙ"
+          />
+          <span>КУБ-СТРОЙ</span>
+        </a>
+        <nav class="main-nav" aria-label="Навигация по сайту">
+          <!-- main-nav__persist: остаётся видимой при схлопывании меню на узких экранах (как в remont.css). -->
+          <a class="main-nav__persist" href="./index.html#home">Главная</a>
+          <a href="./index.html#projects">Проекты</a>
+          <a href="./index.html#materials">Материалы</a>
+          <a href="./remont.html" aria-current="page">Ремонт квартир</a>
+          <a href="./index.html#contacts">Контакты</a>
+          <a class="cta-link" href="#contacts-remont">Связаться</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Ввод: бренд, оффер и кухня в одной секции — меньше вертикального «растягивания». -->
+      <section class="section section-dark remont-section remont-section--intro">
+        <div class="container remont-intro">
+          <div class="remont-hero reveal">
+            <div class="remont-hero__brand">
+              <p class="remont-hero__ooo">Общество с ограниченной ответственностью</p>
+              <p class="remont-hero__name">КУБ-СТРОЙ</p>
+            </div>
+            <div class="remont-hero__offer">
+              <h1 class="remont-hero__title">
+                <span class="remont-hero__title-prefix">Ремонт квартиры от</span>
+                <span class="remont-hero__title-line">
+                  <span class="remont-hero__lemana">ЛЕМАНА</span>
+                  <span class="remont-hero__pro">ПРО</span>
+                </span>
+              </h1>
+            </div>
+          </div>
+          <div class="remont-showcase reveal">
+            <div class="remont-showcase__frame">
+              <img
+                class="remont-showcase__img"
+                src="./images/Remont/kitchen.png"
+                alt="Современная кухня и гостиная после ремонта"
+                width="1200"
+                height="675"
+              />
+              <p class="remont-showcase__bubble">
+                Приглашаем на просмотр демо-квартиры в вашем доме
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Один блок: просмотр по телефону, УТП, фото ванной и QR (якорь для «Связаться»). -->
+      <section class="section section-blueprint remont-section remont-section--panel" id="contacts-remont">
+        <div class="container">
+          <div class="remont-panel reveal">
+            <!-- Три колонки без «пустой» середины: фото | текст | QR вплотную. -->
+            <div class="remont-panel__grid">
+              <div class="remont-panel__photo">
+                <img
+                  src="./images/Remont/bath_room.png"
+                  alt="Современная ванная комната: панели под дерево, плитка с орнаментом, чёрная фурнитура"
+                  width="600"
+                  height="900"
+                  loading="lazy"
+                />
+              </div>
+              <div class="remont-panel__copy">
+                <div class="remont-panel__phone-row">
+                  <p class="remont-panel__label">Согласование времени на просмотр по тел.:</p>
+                  <a class="remont-panel__pill" href="tel:+79828401390">+7 982 840-13-90</a>
+                </div>
+                <p class="remont-panel__furniture">Возможна комплектация квартиры мебелью.</p>
+                <p class="remont-panel__mail">
+                  <a href="mailto:ooo_kub_stroy@mail.ru">ooo_kub_stroy@mail.ru</a>
+                </p>
+              </div>
+              <div class="remont-panel__qrs">
+                <a
+                  class="remont-panel__qr-item"
+                  href="https://t.me/KUBSTROYREM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="remont-panel__qr-caption">Telegram · @KUBSTROYREM</span>
+                  <img
+                    src="./images/Remont/QR_telegram.png"
+                    alt="QR-код для перехода в Telegram @KUBSTROYREM"
+                    width="112"
+                    height="112"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  class="remont-panel__qr-item remont-panel__qr-item--site"
+                  href="https://kub-stroy.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="remont-panel__qr-caption">Kub-stroy.com</span>
+                  <img
+                    src="./images/Remont/QR_TO_Kub-stroy-site.png"
+                    alt="QR-код сайта Kub-stroy.com"
+                    width="112"
+                    height="112"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <a class="brand" href="./index.html#home" aria-label="На главную">
+          <img
+            class="brand-logo"
+            src="./images/logo Куб Строй.png"
+            alt="Логотип КУБ-СТРОЙ"
+          />
+          <span>КУБ-СТРОЙ</span>
+        </a>
+        <nav class="footer-nav" aria-label="Навигация в подвале">
+          <a href="./index.html#projects">Проекты</a>
+          <a href="./index.html#materials">Материалы</a>
+          <a href="./remont.html">Ремонт квартир</a>
+          <a href="./index.html#contacts">Контакты</a>
+        </nav>
+      </div>
+      <div class="container footer-bottom">
+        <span>© 2026 ООО «КУБ-СТРОЙ»</span>
+        <span>ОГРН 1156658083230 · ИНН 6671025607 · КПП 665801001</span>
+      </div>
+    </footer>
+  </body>
+</html>
