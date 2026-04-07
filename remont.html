@@ -21,7 +21,7 @@
     />
     <link rel="icon" href="./images/logo Куб Строй.png" type="image/png" />
     <link rel="stylesheet" href="./index.css?v=20260218-23" />
-    <link rel="stylesheet" href="./remont.css?v=20260407-3" />
+    <link rel="stylesheet" href="./remont.css?v=20260407-7" />
   </head>
   <body class="page-remont">
     <div class="ambient-lines ambient-lines--top-right" aria-hidden="true"></div>
@@ -37,17 +37,55 @@
           />
           <span>КУБ-СТРОЙ</span>
         </a>
-        <nav class="main-nav" aria-label="Навигация по сайту">
-          <!-- main-nav__persist: остаётся видимой при схлопывании меню на узких экранах (как в remont.css). -->
-          <a class="main-nav__persist" href="./index.html#home">Главная</a>
+        <nav class="main-nav remont-main-nav--desktop" id="remont-site-nav" aria-label="Навигация по сайту">
+          <a href="./index.html#home">Главная</a>
           <a href="./index.html#projects">Проекты</a>
           <a href="./index.html#materials">Материалы</a>
           <a href="./remont.html" aria-current="page">Ремонт квартир</a>
           <a href="./index.html#contacts">Контакты</a>
           <a class="cta-link" href="#contacts-remont">Связаться</a>
         </nav>
+        <button
+          type="button"
+          class="remont-menu-trigger"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          aria-controls="remont-menu-dialog"
+          aria-label="Открыть меню навигации"
+        >
+          <span class="remont-menu-trigger__bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
       </div>
     </header>
+
+    <!-- Модальное меню (только мобильная ширина): нативный dialog, фокус и Escape обрабатывает браузер. -->
+    <dialog class="remont-nav-dialog" id="remont-menu-dialog" aria-labelledby="remont-nav-dialog-title">
+      <div class="remont-nav-dialog__panel">
+        <header class="remont-nav-dialog__head">
+          <div class="remont-nav-dialog__head-text">
+            <p class="remont-nav-dialog__eyebrow">ООО «КУБ-СТРОЙ»</p>
+            <h2 id="remont-nav-dialog-title" class="remont-nav-dialog__title">Меню</h2>
+          </div>
+          <button type="button" class="remont-nav-dialog__close" aria-label="Закрыть меню">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <nav class="remont-nav-dialog__nav" aria-label="Разделы сайта">
+          <ul class="remont-nav-dialog__list">
+            <li><a href="./index.html#home">Главная</a></li>
+            <li><a href="./index.html#projects">Проекты</a></li>
+            <li><a href="./index.html#materials">Материалы</a></li>
+            <li><a href="./remont.html" aria-current="page">Ремонт квартир</a></li>
+            <li><a href="./index.html#contacts">Контакты</a></li>
+            <li><a class="remont-nav-dialog__cta" href="#contacts-remont">Связаться</a></li>
+          </ul>
+        </nav>
+      </div>
+    </dialog>
 
     <main>
       <!-- Ввод: бренд, оффер и кухня в одной секции — меньше вертикального «растягивания». -->
@@ -170,5 +208,6 @@
         <span>ОГРН 1156658083230 · ИНН 6671025607 · КПП 665801001</span>
       </div>
     </footer>
+    <script src="./remont-nav.js?v=20260407-6" defer></script>
   </body>
 </html>
